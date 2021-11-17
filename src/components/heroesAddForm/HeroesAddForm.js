@@ -9,6 +9,9 @@
 // Дополнительно:
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
+import { useDispatch, useSelector } from 'react-redux';
+import { addHero } from '../../actions';
+
 
 const HeroesAddForm = () => {
     return (
