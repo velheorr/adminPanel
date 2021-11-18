@@ -1,28 +1,22 @@
 {
   "heroes": [
     {
-      "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
-      "element": "fire"
-    },
-    {
       "id": 2,
       "name": "Неизвестный герой",
       "description": "Скрывающийся в тени",
       "element": "wind"
     },
     {
-      "id": "3476fc04-f2f1-4edf-b12c-40592e8ee994",
-      "name": "234",
-      "description": "234",
-      "element": "water"
-    },
-    {
       "id": "c5117a39-ad55-4469-b87c-8a5ab76f0db2",
       "name": "1",
       "description": "6",
       "element": "wind"
+    },
+    {
+      "id": "70bb5a5b-4271-4658-bbea-7d8cde3ccc46",
+      "name": "yf",
+      "description": "fgh",
+      "element": "water"
     }
   ],
   "filters": [
