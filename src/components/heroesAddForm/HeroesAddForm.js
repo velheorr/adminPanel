@@ -29,7 +29,7 @@ const HeroesAddForm = () => {
 
     let options;
     if (filters){
-        options = filters.map(i=><option value={i.key}>{i.value}</option>)
+        options = filters.map(i=><option key={i.key} value={i.key}>{i.value}</option>)
     }
 
     const onSubmit = data => {

@@ -37,3 +37,9 @@ export const getFilters = (filters)=> {
         payload: filters
     }
 }
+export const makeActiveFilter = (id)=> {
+    return {
+        type: 'MAKE_ACTIVE_FILTER',
+        payload: id
+    }
+}

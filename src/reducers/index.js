@@ -34,6 +34,10 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, filters: action.payload
             }
+        case 'MAKE_ACTIVE_FILTER':
+            return {
+                ...state, filters: action.payload
+            }
         default: return state
     }
 }
