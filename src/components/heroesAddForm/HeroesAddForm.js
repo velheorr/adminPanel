@@ -10,46 +10,67 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
 import { useDispatch, useSelector } from 'react-redux';
-import { addHero } from '../../actions';
+import {getFilters, heroesFetched} from '../../actions';
+import React, {useEffect} from "react";
+import { useForm } from "react-hook-form";
+import {useHttp} from "../../hooks/http.hook";
 
 
 const HeroesAddForm = () => {
+    const {filters } = useSelector(state => state);
+    const {request} = useHttp();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        request("http://localhost:3001/filters")
+            .then(data => dispatch(getFilters(data)))
+    }, []);
+
+    let options;
+    if (filters){
+        options = filters.map(i=><option value={i.key}>{i.value}</option>)
+    }
+
+    const onSubmit = data => {
+        data.id = Date.now()
+        const req = JSON.stringify(data)
+        request("http://localhost:3001/heroes", 'POST', req)
+        request("http://localhost:3001/heroes")
+            .then(data => dispatch(heroesFetched(data)))
+    }
+
+
     return (
-        <form className="border p-4 shadow-lg rounded">
+        <form onSubmit={handleSubmit(onSubmit)} className="border p-4 shadow-lg rounded">
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
-                <input 
-                    required
-                    type="text" 
-                    name="name" 
-                    className="form-control" 
-                    id="name" 
-                    placeholder="Как меня зовут?"/>
+                <input
+                    {...register("name", { required: true })}
+                    type='text'
+                    className="form-control"
+                    placeholder="Как меня зовут?"
+                />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="text" className="form-label fs-4">Описание</label>
                 <textarea
-                    required
-                    name="text" 
-                    className="form-control" 
-                    id="text" 
+                    {...register("description", { required: true })}
+                    className="form-control"
                     placeholder="Что я умею?"
-                    style={{"height": '130px'}}/>
+                    style={{"height": '130px'}}
+                />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="element" className="form-label">Выбрать элемент героя</label>
-                <select 
-                    required
+                <select
+                    {...register("element", { required: true })}
                     className="form-select" 
-                    id="element" 
-                    name="element">
+                >
                     <option >Я владею элементом...</option>
-                    <option value="fire">Огонь</option>
-                    <option value="water">Вода</option>
-                    <option value="wind">Ветер</option>
-                    <option value="earth">Земля</option>
+                    {options}
                 </select>
             </div>
 

@@ -24,6 +24,7 @@ const HeroesList = () => {
 
         // eslint-disable-next-line
     }, []);
+    console.log(heroes)
 
     if (heroesLoadingStatus === "loading") {
         return <Spinner/>;
