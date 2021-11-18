@@ -1,10 +1,14 @@
 import {useHttp} from '../../hooks/http.hook';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition, TransitionGroup} from 'react-transition-group';
 
-import { heroesFetching, heroesFetched, heroesFetchingError, removeHero } from '../../actions';
+import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
+
+import './heroesList.scss';
+import { createSelector } from 'reselect';
 
 // Задача для этого компонента:
 // При клике на "крестик" идет удаление персонажа из общего состояния
@@ -12,7 +16,20 @@ import Spinner from '../spinner/Spinner';
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-    const {heroes, heroesLoadingStatus} = useSelector(state => state);
+    const filteredHeroesSelector = createSelector(
+        (state) => state.filters.activeFilter,
+        (state)=> state.heroes.heroes,
+        (filter, heroes) => {
+            if (filter === 'all'){
+                return heroes
+            } else {
+                return heroes.filter(item => item.element === filter)
+            }
+        }
+    )
+
+    const filteredHeroes = useSelector(filteredHeroesSelector)
+    const heroesLoadingStatus = useSelector(state => state.heroes.heroesLoadingStatus);
     const dispatch = useDispatch();
     const {request} = useHttp();
 
@@ -24,7 +41,18 @@ const HeroesList = () => {
 
         // eslint-disable-next-line
     }, []);
-    console.log(heroes)
+
+    // Функция берет id и по нему удаляет ненужного персонажа из store
+    // ТОЛЬКО если запрос на удаление прошел успешно
+    // Отслеживайте цепочку действий actions => reducers
+    const onDelete = useCallback((id) => {
+        // Удаление персонажа по его id
+        request(`http://localhost:3001/heroes/${id}`, "DELETE")
+            .then(data => console.log(data, 'Deleted'))
+            .then(dispatch(heroDeleted(id)))
+            .catch(err => console.log(err));
+        // eslint-disable-next-line
+    }, [request]);
 
     if (heroesLoadingStatus === "loading") {
         return <Spinner/>;
@@ -34,25 +62,32 @@ const HeroesList = () => {
 
     const renderHeroesList = (arr) => {
         if (arr.length === 0) {
-            return <h5 className="text-center mt-5">Героев пока нет</h5>
+            return (
+                <CSSTransition
+                    timeout={0}
+                    classNames="hero">
+                    <h5 className="text-center mt-5">Героев пока нет</h5>
+                </CSSTransition>
+            )
         }
 
         return arr.map(({id, ...props}) => {
-            return <HeroesListItem key={id} {...props} id={id} deleteHero={deleteHero}/>
+            return (
+                <CSSTransition
+                    key={id}
+                    timeout={500}
+                    classNames="hero">
+                    <HeroesListItem  {...props} onDelete={() => onDelete(id)}/>
+                </CSSTransition>
+            )
         })
     }
 
-    const deleteHero = (id)=>{
-        const delHero = heroes.filter(h => h.id !== id)
-        dispatch(removeHero(delHero))
-        request("http://localhost:3001/heroes/" + id, 'DELETE')
-    }
-
-    const elements = renderHeroesList(heroes);
+    const elements = renderHeroesList(filteredHeroes);
     return (
-        <ul>
+        <TransitionGroup component="ul">
             {elements}
-        </ul>
+        </TransitionGroup>
     )
 }
 

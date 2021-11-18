@@ -13,54 +13,43 @@
       "element": "wind"
     },
     {
-      "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
+      "id": "3476fc04-f2f1-4edf-b12c-40592e8ee994",
+      "name": "234",
+      "description": "234",
       "element": "water"
     },
     {
-      "id": 5,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
-    },
-    {
-      "name": "ret",
-      "description": "ert",
-      "element": "earth",
-      "id": 1637214685501
+      "id": "c5117a39-ad55-4469-b87c-8a5ab76f0db2",
+      "name": "1",
+      "description": "6",
+      "element": "wind"
     }
   ],
   "filters": [
     {
-      "key": "all",
-      "value": "Все",
-      "class": "btn-outline-dark",
-      "active": true
+      "name": "all",
+      "label": "Все",
+      "className": "btn-outline-dark"
     },
     {
-      "key": "fire",
-      "value": "Огонь",
-      "class": "btn-danger",
-      "active": false
+      "name": "fire",
+      "label": "Огонь",
+      "className": "btn-danger"
     },
     {
-      "key": "water",
-      "value": "Вода",
-      "class": "btn-primary",
-      "active": false
+      "name": "water",
+      "label": "Вода",
+      "className": "btn-primary"
     },
     {
-      "key": "wind",
-      "value": "Ветер",
-      "class": "btn-success",
-      "active": false
+      "name": "wind",
+      "label": "Ветер",
+      "className": "btn-success"
     },
     {
-      "key": "earth",
-      "value": "Земля",
-      "class": "btn-secondary",
-      "active": false
+      "name": "earth",
+      "label": "Земля",
+      "className": "btn-secondary"
     }
   ]
 }

@@ -24,12 +24,12 @@ export const useHttp = () => {
     }, []);
 
     // const clearError = useCallback(() => {
-        // setProcess('loading');
+    // setProcess('loading');
     // }, []);
 
-    return {request, 
-            // clearError, 
-            // process, 
-            // setProcess
-        }
+    return {request,
+        // clearError,
+        // process,
+        // setProcess
+    }
 }
