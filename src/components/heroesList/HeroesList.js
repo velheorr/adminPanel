@@ -36,6 +36,7 @@ const HeroesList = () => {
             .then(data => console.log(data, 'Deleted'))
             .then(dispatch(heroDeleted(id)))
             .catch(err => console.log(err));
+        dispatch(fetchHeroes())
         // eslint-disable-next-line
     }, [request]);
 

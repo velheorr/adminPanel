@@ -1,22 +1,16 @@
 {
   "heroes": [
     {
-      "id": "63d39ed4-a139-4dbf-84c8-7b337726aa3c",
-      "name": "uyi",
-      "description": "tyui",
-      "element": "fire"
-    },
-    {
-      "id": "3a48dcba-8448-451a-a9c8-83e658f5e88c",
-      "name": "re",
-      "description": "er",
-      "element": "water"
-    },
-    {
-      "id": "8bf83a16-b8fa-4632-9956-2784a4389719",
-      "name": "sf",
-      "description": "dsf",
+      "id": "067feb69-361d-4e23-9cc6-a68872750feb",
+      "name": "Gera",
+      "description": "nothing",
       "element": "wind"
+    },
+    {
+      "id": "5120e2f2-1e63-4c7c-8878-0c3531d4caa7",
+      "name": "Cap Marvel",
+      "description": "many things",
+      "element": "fire"
     }
   ],
   "filters": [
