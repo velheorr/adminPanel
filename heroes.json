@@ -1,22 +1,22 @@
 {
   "heroes": [
     {
-      "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
-      "element": "wind"
+      "id": "63d39ed4-a139-4dbf-84c8-7b337726aa3c",
+      "name": "uyi",
+      "description": "tyui",
+      "element": "fire"
     },
     {
-      "id": "c5117a39-ad55-4469-b87c-8a5ab76f0db2",
-      "name": "1",
-      "description": "6",
-      "element": "wind"
-    },
-    {
-      "id": "70bb5a5b-4271-4658-bbea-7d8cde3ccc46",
-      "name": "yf",
-      "description": "fgh",
+      "id": "3a48dcba-8448-451a-a9c8-83e658f5e88c",
+      "name": "re",
+      "description": "er",
       "element": "water"
+    },
+    {
+      "id": "8bf83a16-b8fa-4632-9956-2784a4389719",
+      "name": "sf",
+      "description": "dsf",
+      "element": "wind"
     }
   ],
   "filters": [
